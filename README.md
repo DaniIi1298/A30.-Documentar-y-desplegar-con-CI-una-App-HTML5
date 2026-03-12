@@ -1,4 +1,4 @@
-# Flappy Bird Clone
+# Flappy Bird Clone:
 
 Este proyecto es una clonación del popular juego Flappy Bird utilizando Phaser 3. El objetivo del juego es controlar un pájaro que debe volar evitando obstáculos.
 
