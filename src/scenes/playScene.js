@@ -19,12 +19,9 @@ class PlayScene extends Scene {
 		// Log: la escena se ha iniciado (útil para agrupar por device/session)
 		Bugfender.info('PlayScene iniciada')
 
-		// Petición a la API: logueamos la respuesta y errores para poder depurar desde Bugfender
 		fetch('https://a26-generador-express.onrender.com/api/bicicletas')
 			.then((response) => response.json())
 			.then((data) => {
-				// Log de datos recibidos (incluye el payload para contexto)
-				Bugfender.log('Datos recibidos de la API', data)
 				console.log('Datos de la API:', data)
 
 				if (data.length > 0) {
@@ -42,8 +39,11 @@ class PlayScene extends Scene {
 				}
 			})
 			.catch((error) => {
-				// Log de error: registrar stack/objeto error permite agrupar y analizar fallos
-				Bugfender.error('Error al obtener datos de la API', error)
+				Bugfender.error('Error al obtener datos de la API', {
+					message: error.message,
+					url: 'https://a26-generador-express.onrender.com/api/bicicletas',
+				})
+
 				console.error('Error al obtener datos:', error)
 			})
 
