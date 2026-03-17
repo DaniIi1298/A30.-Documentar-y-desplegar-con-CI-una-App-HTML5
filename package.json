@@ -23,6 +23,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
+		"@bugfender/sdk": "^3.1.0",
 		"phaser": "3.87.0"
 	},
 	"devDependencies": {
