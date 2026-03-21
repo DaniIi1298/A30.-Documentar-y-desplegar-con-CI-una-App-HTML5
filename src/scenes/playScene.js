@@ -88,8 +88,7 @@ class PlayScene extends Scene {
 			this,
 		)
 
-		// --- Botón generador de errores (requisito de la práctica) ---
-		// Lo añadimos aquí dentro para que 'this' esté disponible y sea parte de la escena
+		// --- BOTON DE ERROR ---
 		const errorBtn = this.add
 			.text(10, 100, 'ERROR', {
 				backgroundColor: '#ff0000',
@@ -98,25 +97,27 @@ class PlayScene extends Scene {
 			})
 			.setInteractive()
 
-		// Error síncrono controlado
+		// Error síncrono
 		errorBtn.on('pointerdown', () => {
 			try {
-				throw new Error('Error de prueba manual')
+				const num = 'hola'
+				num.toFixed(2)
 			} catch (err) {
-				Bugfender.error('Error generado por botón (sync)', err)
+				Bugfender.error('Error generado por botón', err)
 			}
 		})
 
-		// Error asíncrono controlado (promesa rechazada)
+		// Error asíncrono
 		errorBtn.on('pointerup', async () => {
 			try {
-				// rechazamos intencionalmente para generar traza async
-				await Promise.reject(new Error('Error async de prueba'))
+				await Promise.resolve().then(() => {
+					const arr = null
+					arr[0]
+				})
 			} catch (err) {
-				Bugfender.error('Error generado por botón (async)', err)
+				Bugfender.error('Otro error generado por botón', err)
 			}
 		})
-		// -------------------------------------------------------------
 	}
 
 	update() {
